@@ -18,13 +18,8 @@ use Illuminate\Support\Facades\Route;
 Route::prefix('tasks')->group(function () {
     Route::get('/', [\App\Http\Controllers\TaskController::class, 'index']);
 
-    Route::get('/create', function () {
-        // Hiển thị Form tạo mới
-    });
-
-    Route::post('/store', function () {
-        // Xử lý lưu dữ liệu tạo mới task thông qua phương thức POST từ form
-    });
+    Route::get('/create', [\App\Http\Controllers\TaskController::class, 'create']);
+    Route::post('/store', [\App\Http\Controllers\TaskController::class, 'store'])->name('tasks.store');
 
     Route::get('/{id}', function () {
         // Hiển thị thông tin chi tiết task có mã định danh id

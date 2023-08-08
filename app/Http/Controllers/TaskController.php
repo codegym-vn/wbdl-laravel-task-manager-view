@@ -33,4 +33,16 @@ class TaskController extends Controller
         ];
         return view('index', compact('tasks'));
     }
+
+    function create()
+    {
+        return view('add');
+    }
+
+    function store(Request $request){
+        if($request->file('file')) {
+            $path = $request->file('file')->store('uploads');
+        }
+        return "create task successfully";
+    }
 }
