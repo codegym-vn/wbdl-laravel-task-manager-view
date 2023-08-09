@@ -16,7 +16,7 @@
     <div class="card">
         <h5 class="card-header">Danh sách công việc</h5>
         <div class="card-body">
-            <a href="" class="btn btn-success mb-2">+ New</a>
+            <a href="{{ route('tasks.create') }}" class="btn btn-success mb-2">+ New</a>
             <table class="table table-striped table-bordered">
                 <thead>
                 <tr>
@@ -25,6 +25,8 @@
                     <th scope="col">Start Date</th>
                     <th scope="col">End Date</th>
                     <th scope="col">Status</th>
+                    <th scope="col">Image</th>
+                    <th></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -35,6 +37,9 @@
                     <td>{{ $task['start_date'] }}</td>
                     <td>{{ $task['end_date'] }}</td>
                     <td><span class="badge {{ $task['status'] ?  'bg-success' : 'bg-warning'}} ">{{ $task['status'] ? 'Done' : 'Pending' }}</span></td>
+                    <td><img src="{{ asset('storage/' . $task->image) }}" alt="" width="150"></td>
+                    <td><a href="{{ route('tasks.delete', $task->id) }}" class="btn btn-danger">Delete</a></td>
+                    <td><a href="{{ route('tasks.edit', $task->id) }}" class="btn btn-primary">Update</a></td>
                 </tr>
                 @endforeach
                 </tbody>

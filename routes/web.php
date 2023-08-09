@@ -14,26 +14,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Tạo 1 nhóm route với tiền tố customer
 Route::prefix('tasks')->group(function () {
-    Route::get('/', [\App\Http\Controllers\TaskController::class, 'index']);
-
-    Route::get('/create', [\App\Http\Controllers\TaskController::class, 'create']);
+    Route::get('/', [\App\Http\Controllers\TaskController::class, 'index'])->name('tasks.index');
+    Route::get('/create', [\App\Http\Controllers\TaskController::class, 'create'])->name('tasks.create');
     Route::post('/store', [\App\Http\Controllers\TaskController::class, 'store'])->name('tasks.store');
-
-    Route::get('/{id}', function () {
-        // Hiển thị thông tin chi tiết task có mã định danh id
-    });
-
-    Route::get('{id}/edit', function () {
-        // Hiển thị Form chỉnh sửa thông tin task
-    });
-
-    Route::post('{id}/update', function () {
-        // Sử lý cập nhật task
-    });
-
-    Route::get('/{id}/delete', function () {
-        // Xóa task
-    });
+    Route::get('/{id}/edit', [\App\Http\Controllers\TaskController::class, 'edit'])->name('tasks.edit');
+    Route::put('/{id}/edit', [\App\Http\Controllers\TaskController::class, 'update'])->name('tasks.update');
+    Route::get('/{id}/delete', [\App\Http\Controllers\TaskController::class, 'destroy'])->name('tasks.delete');
 });
